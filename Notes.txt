@@ -1,0 +1,65 @@
+All scripts must have this on the first line 
+#!/bin/sh
+
+To run a script it mush first be made executable:
+chmod a+rx my-script.sh
+and can be ran with:
+./my-script.sh
+
+bat files can run shell scripts using the call command:
+call someShell.sh
+
+Syntax
+
+Comment
+# 
+
+Output to terminal
+echo <some text>
+
+Variables
+= is used to assign a value, there can be no whitespace
+MY_MESSAGE="Hello World"
+
+variable values are accessed using $:
+echo MY_MESSAGE will output MY_MESSAGE
+but echo $MY_MESSAGE will output Hello World
+
+The read command is used to get input from the user and populate a variable
+echo What is your name?
+read MY_NAME
+echo "Hello $MY_NAME - hope you're well."
+
+The value of a variable can be set in the command line and made available using the export command:
+MYVAR=hello
+export MYVAR
+./myvar2.sh
+The hello value of MYVAR is now accessible in myvar2.sh.
+If the value of MYVAR is changed in the script it will make no difference to the value in the command line. To make that possible we'd need to run the script using the . command:
+MYVAR=hello
+export MYVAR
+. ./myvar2.sh
+If MYVAR is changed by the script, the new value is retained by in the command line. The . command runs the script in the same shell as the command line rather than creating a new shell.
+
+Wildcards
+*
+
+Escape character
+\
+e.g.
+$ echo "A quote is \", backslash is \\, backtick is \`."
+A quote is ", backslash is \, backtick is `.
+
+For loops
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+
+those numbers can be any value e.g.
+for i in hello 1 * 2 goodbye 
+do
+  echo "Looping ... i is set to $i"
+done
+
+* gives all the files in the directory
